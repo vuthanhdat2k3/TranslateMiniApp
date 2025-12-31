@@ -1,105 +1,138 @@
-# Mini Floating Translator
+# 🌐 Mini Floating Translator
 
-A lightweight always-on-top draggable translator desktop app built with Tauri v2, React 18, and Gemini 2.0 Flash API.
+A lightweight, floating translation app built with Tauri + React. Supports multiple translation engines.
 
-![Mini Translator](./preview.png)
+![Mini Translator](https://img.shields.io/badge/Tauri-2.0-blue) ![React](https://img.shields.io/badge/React-19-61dafb) ![License](https://img.shields.io/badge/License-MIT-green)
 
-## Features
+## ✨ Features
 
-- 🎯 **Always on Top** - Floating window that stays visible
-- 🖱️ **Draggable** - Move the window anywhere on screen
-- 📐 **Collapse/Expand** - Minimize to a small button or expand to full panel
-- 🌍 **Fast Translation** - Powered by Gemini 2.0 Flash API
-- 📋 **One-Click Copy** - Copy translated text instantly
-- ⌨️ **Keyboard Shortcuts** - Quick access with keyboard
+- 🎯 **Floating Window** - Always on top, doesn't block your workflow
+- 🔄 **Multiple Engines** - Gemini AI or Argos Translate (offline)
+- 🎤 **Voice Input** - Speak to translate
+- ⌨️ **Global Shortcuts** - Quick access from anywhere
+- 🌍 **11 Languages** - English, Vietnamese, Chinese, Japanese, Korean, Thai, Filipino, French, Spanish, German, Russian
 
-## Tech Stack
-
-- **Tauri v2** - Desktop app framework
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool
-- **TailwindCSS** - Styling
-- **Framer Motion** - Animations
-- **Lucide React** - Icons
-- **Gemini 2.0 Flash** - Translation API
-
-## Setup
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 18+
-- Rust (for Tauri)
-- Gemini API Key
+- [Node.js](https://nodejs.org/) (v18+)
+- [Rust](https://rustup.rs/)
+- [Python 3.10+](https://python.org/) (for Argos engine)
 
 ### Installation
 
-1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd MiniFloatingTranlatorApp
-```
+# Clone the repository
+git clone https://github.com/vuthanhdat2k3/TranslateMiniApp.git
+cd TranslateMiniApp
 
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-```
 
-3. Create `.env` file from example:
-```bash
+# Create .env file from example
 cp .env.example .env
+# Edit .env and add your Gemini API key
 ```
 
-4. Add your Gemini API key to `.env`:
-```env
-VITE_GEMINI_API_KEY=your_actual_gemini_api_key
-```
+### Development
 
-5. Run the app:
 ```bash
+# Run Tauri app in development
 npm run tauri dev
 ```
 
-## Keyboard Shortcuts
+### Using Argos Translate (Offline)
 
-| Shortcut | Action |
-|----------|--------|
-| `Enter` | Translate text |
-| `Shift+Enter` | New line in input |
-| `Ctrl+Enter` | Translate text |
-| `Ctrl+C` | Copy output (when not selecting text) |
-| `Esc` | Collapse window |
+```bash
+# Setup Python environment
+cd argos-server
+python -m venv venv
 
-## Window Behavior
+# Windows
+.\venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
 
-- **Expanded**: 360x420 pixels - Full translation panel
-- **Collapsed**: 56x56 pixels - Floating button
+# Install dependencies
+pip install -r requirements.txt
 
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── FloatingButton.tsx    # Collapsed circular button
-│   ├── Header.tsx            # Language swap, collapse, close
-│   └── TranslatorPanel.tsx   # Main translation UI
-├── hooks/
-│   └── useDrag.ts            # Window dragging functionality
-├── services/
-│   └── translate.ts          # Gemini API integration
-├── App.tsx                   # Main app component
-├── App.css                   # Base styles
-└── main.tsx                  # Entry point
+# Run server
+python server.py
 ```
 
-## Building for Production
+## 🔨 Build for Production
+
+### Windows
 
 ```bash
 npm run tauri build
 ```
 
-The built application will be in `src-tauri/target/release/`.
+Output files:
+- `src-tauri/target/release/bundle/msi/` - MSI installer
+- `src-tauri/target/release/bundle/nsis/` - EXE installer
 
-## License
+### macOS
 
-MIT
+```bash
+npm run tauri build
+```
+
+Output: `src-tauri/target/release/bundle/dmg/`
+
+### Linux
+
+```bash
+npm run tauri build
+```
+
+Output: `src-tauri/target/release/bundle/deb/` or `appimage/`
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+Shift+T` | Toggle app visibility |
+| `Ctrl+Shift+C` | Copy translation |
+| `Ctrl+Shift+V` | Voice input |
+| `Enter` | Translate |
+
+## ⚙️ Configuration
+
+Create a `.env` file in the root directory:
+
+```env
+# Gemini API Key (get it from https://aistudio.google.com/apikey)
+VITE_GEMINI_API_KEY=your_api_key_here
+
+# Optional: Argos server URL (default: http://127.0.0.1:5100/translate)
+VITE_ARGOS_SERVER_URL=http://127.0.0.1:5100/translate
+```
+
+## 📦 Translation Engines
+
+### 1. Gemini AI (Online)
+- Requires API key
+- High quality translations
+- Fast response
+
+### 2. Argos Translate (Offline)
+- No API key needed
+- Works offline after first model download
+- Pivot translation through English for unsupported pairs
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+MIT License - feel free to use this project for personal or commercial purposes.
+
+## 🙏 Credits
+
+- [Tauri](https://tauri.app/) - Desktop app framework
+- [React](https://react.dev/) - UI library
+- [Argos Translate](https://github.com/argosopentech/argos-translate) - Offline translation
+- [Google Gemini](https://ai.google.dev/) - AI translation

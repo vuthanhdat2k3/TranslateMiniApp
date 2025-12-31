@@ -4,14 +4,15 @@ Simple Argos Translate REST API Server
 This server provides a local translation API using Argos Translate.
 """
 
+import os
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 import argostranslate.package
 import argostranslate.translate
 
-# Server configuration
-HOST = "127.0.0.1"
-PORT = 5100
+# Server configuration (can be overridden by environment variables)
+HOST = os.environ.get("HOST", "127.0.0.1")
+PORT = int(os.environ.get("PORT", 5100))
 
 # Track installed languages
 installed_languages = set()

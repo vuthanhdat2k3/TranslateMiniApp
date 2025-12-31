@@ -4,7 +4,7 @@ import { getCurrentWindow } from '@tauri-apps/api/window';
 import { register, unregister } from '@tauri-apps/plugin-global-shortcut';
 import {
   Languages, ArrowRightLeft, Copy, Check, Loader2, X, GripVertical,
-  Mic, MicOff, ChevronDown, Settings
+  Mic, MicOff, ChevronDown
 } from 'lucide-react';
 import { translateText } from './services/translate';
 import { translateTextArgos } from './services/translateArgos';
